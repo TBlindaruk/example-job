@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\ORM\Manager\JobManager;
+use App\Executor\RegionPolygonUpdateExecutor;
 use App\ORM\Models\Job as JobModel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -20,8 +20,9 @@ class MapUpdate implements ShouldQueue
     
     }
     
-    public function handle(JobManager $jobManager): void
-    {
-        $jobManager->updateToStatusFinished($this->jobModel);
+    public function handle(
+        RegionPolygonUpdateExecutor $regionPolygonUpdateExecutor
+    ): void {
+        $regionPolygonUpdateExecutor->execute($this->jobModel);
     }
 }

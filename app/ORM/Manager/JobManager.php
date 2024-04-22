@@ -30,10 +30,19 @@ class JobManager
     
     public function updateToStatusFailedOnPush(Job $job):Job
     {
-        $job->setStatusFinished();
+        $job->setStatusFailedOnPush();
     
         $job->save();
     
+        return $job;
+    }
+    
+    public function updateToStatusFailedOnQueue(Job $job): Job
+    {
+        $job->setStatusFailedOnQueue();
+        
+        $job->save();
+        
         return $job;
     }
 }
