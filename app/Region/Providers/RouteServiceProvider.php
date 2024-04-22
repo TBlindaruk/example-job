@@ -38,7 +38,7 @@ class RouteServiceProvider extends ServiceProvider
          */
         $router = $this->app->make('router');
     
-        $router->middleware([ForceJsonResponse::class])
+        $router->middleware([])
             ->group(function () use ($router) {
     
                 $router->put('data', PutAction::class);
