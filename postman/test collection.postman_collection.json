@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "f9696db6-8a37-4a03-b22b-bf802e6323dc",
+		"name": "test collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1061555"
+	},
+	"item": [
+		{
+			"name": "put data",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8081/data?action=refresh",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"data"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "refresh"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get jobs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/jobs?action=list&status=0",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"jobs"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "list"
+						},
+						{
+							"key": "status",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/data?action=search&lan=46.496886&lat=30.620283",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"data"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "search"
+						},
+						{
+							"key": "lan",
+							"value": "46.496886"
+						},
+						{
+							"key": "lat",
+							"value": "30.620283"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search data Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/data",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get polygos external",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Your-App-Name"
+					}
+				],
+				"url": {
+					"raw": "https://nominatim.openstreetmap.org/search.php?q=\"Запорізька область, Ukraine\"&format=json&polygon_geojson=1",
+					"protocol": "https",
+					"host": [
+						"nominatim",
+						"openstreetmap",
+						"org"
+					],
+					"path": [
+						"search.php"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "\"Запорізька область, Ukraine\""
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "polygon_geojson",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
