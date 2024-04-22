@@ -22,6 +22,29 @@ services:
     networks:
       - travellist
 
+  app-workers:
+    build:
+      args:
+        user: sammy
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: app-worker
+    container_name: app-worker
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - memcached
+    environment:
+      CACHE_DRIVER: memcached
+      MEMCACHED_HOST: memcached
+      MEMCACHED_PORT: 11211
+    networks:
+      - travellist
+    command: php artisan queue:work redis --daemon
+
   redis:
     image: redis:alpine
     ports:
@@ -61,6 +84,8 @@ services:
     volumes:
       - ./:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d/
+    depends_on:
+      - app
     networks:
       - travellist
 

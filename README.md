@@ -1,16 +1,10 @@
 ### build
-docker-compose build app
+To build app use next command
+
+```
+make build
+```
 
 ### up
-docker-compose up -d --build
+docker-compose up -d
 
-### install
-docker-compose exec app composer install
-
-docker-compose exec app bash
-
-php artisan queue:work redis --daemon
-
-php artisan migrate
-
-php artisan migrate:rollback
