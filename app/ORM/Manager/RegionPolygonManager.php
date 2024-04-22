@@ -23,4 +23,9 @@ class RegionPolygonManager
         
         return $regionPolygon;
     }
+    
+    public function deleteAll(): void
+    {
+        RegionPolygon::query()->delete();
+    }
 }

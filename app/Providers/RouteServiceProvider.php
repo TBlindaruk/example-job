@@ -2,14 +2,11 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Data\DeleteAction;
 use App\Http\Controllers\Data\GetAction;
 use App\Http\Controllers\Data\PutAction;
 use App\Http\Controllers\JobController;
 use App\Http\Middleware\ForceJsonResponse;
-use Base\Http\Middleware\IsGroupInviteBelongToGroup;
-use Base\Http\Middleware\IsGroupInviteNotCanceled;
-use Base\Http\Middleware\IsGroupInviteNotEmbedded;
-use DocumentFlow\Http\Middleware\Document\IsGroupOwner;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +43,7 @@ class RouteServiceProvider extends ServiceProvider
     
                 $router->put('data', PutAction::class);
                 $router->get('data', GetAction::class);
+                $router->delete('data', DeleteAction::class);
     
                 $router->get('jobs', JobController::class);
             });
