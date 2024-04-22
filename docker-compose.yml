@@ -13,6 +13,12 @@ services:
     working_dir: /var/www/
     volumes:
       - ./:/var/www
+    depends_on:
+      - memcached
+    environment:
+      CACHE_DRIVER: memcached
+      MEMCACHED_HOST: memcached
+      MEMCACHED_PORT: 11211
     networks:
       - travellist
 
@@ -20,6 +26,13 @@ services:
     image: redis:alpine
     ports:
       - "6379:6379"
+    networks:
+      - travellist
+
+  memcached:
+    image: memcached:latest
+    ports:
+      - "11211:11211"
     networks:
       - travellist
 

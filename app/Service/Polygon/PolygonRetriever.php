@@ -27,6 +27,7 @@ class PolygonRetriever
         $url = $baseURL . '?' . http_build_query($params);
         
         try {
+            // TODO: query parameters should be without http_build_query
             $response = $client->get($url, ['headers' => ['User-Agent' => 'My app']]);
             
             return json_decode($response->getBody()->__toString(), true);

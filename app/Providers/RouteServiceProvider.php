@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\DataController;
+use App\Http\Controllers\Data\GetAction;
+use App\Http\Controllers\Data\PutAction;
 use App\Http\Controllers\JobController;
 use App\Http\Middleware\ForceJsonResponse;
 use Base\Http\Middleware\IsGroupInviteBelongToGroup;
@@ -43,8 +44,9 @@ class RouteServiceProvider extends ServiceProvider
         $router->middleware([ForceJsonResponse::class])
             ->group(function () use ($router) {
     
-                $router->put('data', DataController::class);
-                
+                $router->put('data', PutAction::class);
+                $router->get('data', GetAction::class);
+    
                 $router->get('jobs', JobController::class);
             });
     }

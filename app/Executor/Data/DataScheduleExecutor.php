@@ -1,14 +1,14 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Executor;
+namespace App\Executor\Data;
 
 use App\Jobs\MapUpdate;
 use App\ORM\Manager\JobManager;
 use Illuminate\Bus\Dispatcher;
 use Illuminate\Log\LogManager;
 
-class DataScheduleExucutor
+class DataScheduleExecutor
 {
     public function __construct(
         private readonly Dispatcher $dispatcher,

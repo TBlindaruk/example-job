@@ -44,8 +44,9 @@ class RegionPolygonUpdateExecutor
         $regions->loadMissingRegionPolygon();
         
         foreach ($regions->all() as $region) {
-            $data = $this->polygonRetriever->getPolygons($region->name);
-            $this->regionPolygonManager->createOrUpdate($region, $data[0]['geojson']['coordinates'] ?? []);
+            $datas = $this->polygonRetriever->getPolygons($region->name);
+            
+            $this->regionPolygonManager->createOrUpdate($region, $datas[0]['geojson']['coordinates'] ?? []);
         }
     }
 }

@@ -13,15 +13,16 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    libhiredis-dev
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+    libhiredis-dev \
+    libmemcached-dev \
+    zlib1g-dev \
+    libssl-dev
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
     && pecl install redis \
-    && docker-php-ext-enable redis
+    && pecl install memcached \
+    && docker-php-ext-enable redis memcached
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

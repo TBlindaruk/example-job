@@ -1,16 +1,16 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Data;
 
-use App\Executor\DataScheduleExucutor;
-use App\Http\Requests\DataPutRequest;
+use App\Executor\Data\DataScheduleExecutor;
+use App\Http\Requests\Data\DataPutRequest;
 use App\Http\Resource\SuccessResource;
 
-class DataController
+class PutAction
 {
     public function __construct(
-        private readonly DataScheduleExucutor $dataScheduleExecutor,
+        private readonly DataScheduleExecutor $dataScheduleExecutor,
     ) {
     }
     
@@ -20,6 +20,4 @@ class DataController
             $this->dataScheduleExecutor->execute($dataPutRequest->getDelaySeconds())
         );
     }
-    
-    // TODO: search poligons - it is should be other resource https://github.com/mjaschen/phpgeo
 }

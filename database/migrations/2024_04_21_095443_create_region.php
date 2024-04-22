@@ -18,20 +18,20 @@ return new class extends Migration {
         
         DB::table('regions')->insert(
             [
-                ['name' => 'Vinnytsia Oblast'],
-                ['name' => 'Volyn Oblast'],
-                ['name' => 'Dnipropetrovsk Oblast'],
-                ['name' => 'Donetsk Oblast'],
-                ['name' => 'Zhytomyr Oblast'],
-                ['name' => 'Zakarpattia Oblast'],
-                ['name' => 'Zaporizhzhia Oblast'],
-                ['name' => 'Ivano-Frankivsk Oblast'],
-                ['name' => 'Kyiv Oblast'],
+                ['name' => 'Vinnytsia Oblast'], // ok
+                ['name' => 'Volyn Oblast'], // ok
+                ['name' => 'Dnipropetrovsk Oblast'], // ok
+                ['name' => 'Donetsk Oblast'], // ok
+                ['name' => 'Zhytomyr Oblast'], // ok
+                ['name' => 'Zakarpattia Oblast'], // ok
+                ['name' => 'Запорізька область'], // ok
+                ['name' => 'Ivano-Frankivsk Oblast'], // ok
+                ['name' => 'Kyiv Oblast'], // ok
                 ['name' => 'Kirovohrad Oblast'],
                 ['name' => 'Luhansk Oblast'],
                 ['name' => 'Lviv Oblast'],
                 ['name' => 'Mykolaiv Oblast'],
-                ['name' => 'Odessa Oblast'],
+                ['name' => 'Odessa Oblast'], // ok
                 ['name' => 'Poltava Oblast'],
                 ['name' => 'Rivne Oblast'],
                 ['name' => 'Sumy Oblast'],
