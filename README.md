@@ -6,3 +6,5 @@ docker-compose up -d
 
 ### install
 docker-compose exec app composer install
+
+docker-compose exec app bash

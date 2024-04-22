@@ -16,6 +16,13 @@ services:
     networks:
       - travellist
 
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - travellist
+
   db:
     image: mysql:8.0
     container_name: travellist-db
