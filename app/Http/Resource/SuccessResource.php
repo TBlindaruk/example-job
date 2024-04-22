@@ -5,19 +5,19 @@ namespace App\Http\Resource;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property bool $resource
+ *
+ * Class SuccessResource
+ *
+ * @package App\Http\Resource
+ */
 class SuccessResource extends JsonResource
 {
-    public function __construct($resource = null)
-    {
-        parent::__construct($resource);
-    }
-    
     public function toArray($request): array
     {
         return [
-            'data' => [
-                'success' => true,
-            ],
+            'success' => $this->resource,
         ];
     }
 }

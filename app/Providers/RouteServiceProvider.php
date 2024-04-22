@@ -2,10 +2,15 @@
 
 namespace App\Providers;
 
-use Illuminate\Cache\RateLimiting\Limit;
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\JobController;
+use App\Http\Middleware\ForceJsonResponse;
+use Base\Http\Middleware\IsGroupInviteBelongToGroup;
+use Base\Http\Middleware\IsGroupInviteNotCanceled;
+use Base\Http\Middleware\IsGroupInviteNotEmbedded;
+use DocumentFlow\Http\Middleware\Document\IsGroupOwner;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
@@ -24,17 +29,23 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
-
         $this->routes(function () {
-            Route::put('data', \App\Http\Controllers\DataController::class)
-                ->middleware(        \App\Http\Middleware\ForceJsonResponse::class);
-    
             Route::get('/', function () {
                 return view('welcome');
             });
         });
+    
+        /**
+         * @var Router $router
+         */
+        $router = $this->app->make('router');
+    
+        $router->middleware([ForceJsonResponse::class])
+            ->group(function () use ($router) {
+    
+                $router->put('data', DataController::class);
+                
+                $router->get('jobs', JobController::class);
+            });
     }
 }

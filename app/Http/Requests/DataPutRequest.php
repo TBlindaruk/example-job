@@ -24,7 +24,7 @@ class DataPutRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'action.in' => 'The selected action should be "refresh".',
+            'action.in' => 'The selected :attribute should be "refresh".',
         ];
     }
     

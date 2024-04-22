@@ -8,3 +8,5 @@ docker-compose up -d
 docker-compose exec app composer install
 
 docker-compose exec app bash
+
+php artisan queue:work redis --daemon
