@@ -12,4 +12,9 @@ class RegionPolygonRepository
     {
         return RegionPolygon::query()->get();
     }
+    
+    public function existAny(): bool
+    {
+        return RegionPolygon::query()->exists();
+    }
 }
