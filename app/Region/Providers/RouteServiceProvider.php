@@ -27,12 +27,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->routes(function () {
-            Route::get('/', function () {
-                return view('welcome');
-            });
-        });
-    
         /**
          * @var Router $router
          */
