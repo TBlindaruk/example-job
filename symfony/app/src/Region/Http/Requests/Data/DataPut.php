@@ -1,7 +1,8 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Region\Http\Resource\Data;
+namespace App\Region\Http\Requests\Data;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 class DataPut

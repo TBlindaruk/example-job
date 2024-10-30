@@ -12,7 +12,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
  *
  * @property Job $resource
  *
- * @package App\Http\Resource
+ * @package App\Http\Requests
  */
 class JobCollection extends ResourceCollection
 {

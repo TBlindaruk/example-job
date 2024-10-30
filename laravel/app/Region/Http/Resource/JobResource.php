@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *
  * @property Job $resource
  *
- * @package App\Http\Resource
+ * @package App\Http\Requests
  */
 class JobResource extends JsonResource
 {

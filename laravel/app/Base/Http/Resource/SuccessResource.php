@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *
  * Class SuccessResource
  *
- * @package App\Http\Resource
+ * @package App\Http\Requests
  */
 class SuccessResource extends JsonResource
 {
