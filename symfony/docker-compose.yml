@@ -5,20 +5,33 @@ services:
       args:
         user: sammy
         uid: 1000
-      context: ./
+      context: ./app/
       dockerfile: Dockerfile
-    container_name: travellist-app-symfony
+    container_name: example-app-symfony
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
-      - ./:/var/www
+      - ./app/:/var/www
     environment:
       CACHE_DRIVER: memcached
       MEMCACHED_HOST: memcached
       MEMCACHED_PORT: 11211
     networks:
-      - travellist
+      - app-network
+  nginx:
+    image: nginx:alpine
+    container_name: example-app-symfony-ngnix
+    restart: unless-stopped
+    ports:
+      - 8081:80
+    volumes:
+      - ./app/:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    depends_on:
+      - app
+    networks:
+      - app-network
 
 networks:
-  travellist:
+  app-network:
     driver: bridge
