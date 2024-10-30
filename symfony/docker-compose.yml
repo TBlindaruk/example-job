@@ -16,6 +16,13 @@ services:
       CACHE_DRIVER: memcached
       MEMCACHED_HOST: memcached
       MEMCACHED_PORT: 11211
+      MESSENGER_TRANSPORT_DSN: redis://localhost:6379/messages
+    networks:
+      - app-network
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
     networks:
       - app-network
   nginx:

@@ -13,4 +13,9 @@ class DataPut
         public readonly int $delaySeconds,
     ) {
     }
+
+    public function getDelaySeconds(): int
+    {
+        return $this->delaySeconds ?? 1;
+    }
 }
