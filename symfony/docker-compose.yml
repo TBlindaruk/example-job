@@ -25,6 +25,21 @@ services:
       - "6379:6379"
     networks:
       - app-network
+  db:
+    image: mysql:8.0
+    container_name: example-app-database-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
   nginx:
     image: nginx:alpine
     container_name: example-app-symfony-ngnix
@@ -42,3 +57,9 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  ###> doctrine/doctrine-bundle ###
+  database_data:
+  ###< doctrine/doctrine-bundle ###
+
