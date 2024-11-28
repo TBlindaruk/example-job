@@ -1,0 +1,65 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: sammy
+        uid: 1000
+      context: ./app/
+      dockerfile: Dockerfile
+    container_name: example-app-symfony
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./app/:/var/www
+    environment:
+      CACHE_DRIVER: memcached
+      MEMCACHED_HOST: memcached
+      MEMCACHED_PORT: 11211
+      MESSENGER_TRANSPORT_DSN: redis://redis_container:6379/messages
+    networks:
+      - app-network
+  redis_container:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+  db:
+    image: mysql:8.0
+    container_name: example-app-database-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+  nginx:
+    image: nginx:alpine
+    container_name: example-app-symfony-ngnix
+    restart: unless-stopped
+    ports:
+      - 8081:80
+    volumes:
+      - ./app/:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    depends_on:
+      - app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  ###> doctrine/doctrine-bundle ###
+  database_data:
+  ###< doctrine/doctrine-bundle ###
+

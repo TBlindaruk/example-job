@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *
  * @property-read OblastData resource
  *
- * @package App\Http\Resource
+ * @package App\Http\Requests
  */
 class DataGetResource extends JsonResource
 {
